@@ -44,3 +44,23 @@ func BenchmarkManual(b *testing.B) {
 		b.SetBytes(sz)
 	}
 }
+
+func BenchmarkArr(b *testing.B) {
+	for bc := 0; bc < b.N; bc++ {
+		x := [sz]int{}
+		for i := 0; i < sz; i++ {
+			x[i] = i
+		}
+		b.SetBytes(sz)
+	}
+}
+
+func BenchmarkRArr(b *testing.B) {
+	for bc := 0; bc < b.N; bc++ {
+		x := [sz]int{}
+		for i := range x {
+			x[i] = i
+		}
+		b.SetBytes(sz)
+	}
+}
