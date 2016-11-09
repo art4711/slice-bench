@@ -45,6 +45,18 @@ func BenchmarkManual(b *testing.B) {
 	}
 }
 
+func BenchmarkFirst(b *testing.B) {
+	for bc := 0; bc < b.N; bc++ {
+		x := make([]int, sz)
+		s := x
+		for i := 0; len(s) > 0; i++ {
+			s[0] = i
+			s = s[1:]
+		}
+		b.SetBytes(sz)
+	}
+}
+
 func BenchmarkArr(b *testing.B) {
 	for bc := 0; bc < b.N; bc++ {
 		x := [sz]int{}
